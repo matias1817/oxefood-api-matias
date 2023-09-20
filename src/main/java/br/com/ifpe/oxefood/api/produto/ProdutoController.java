@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.ifpe.oxefood.modelo.produto.Produto;
 import br.com.ifpe.oxefood.modelo.produto.ProdutoService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/api/produto")
 @CrossOrigin
@@ -28,30 +32,34 @@ public class ProdutoController {
    @Autowired
    private ProdutoService produtoService;
 
+   @ApiOperation(value = "Serviço responsável por salvar um produto no sistema.")
    @PostMapping
    public ResponseEntity<Produto> save(@RequestBody @Valid ProdutoRequest request) {
 
        Produto produto = produtoService.save(request.build());
        return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
    }
+   @ApiOperation(value = "Serviço responsável por listar todos os produtos do sistema.")
      @GetMapping
     public List<Produto> findAll() {
   
         return produtoService.findAll();
     }
 
+    @ApiOperation(value = "Serviço responsável por obter um produto referente ao Id passado na URL.")
     @GetMapping("/{id}")
     public Produto findById(@PathVariable Long id) {
 
         return produtoService.findById(id);
     }
+    @ApiOperation(value = "Serviço responsável por alterar um produto referente ao Id passado na URL.")
     @PutMapping("/{id}")
    public ResponseEntity<Produto> update(@PathVariable("id") Long id, @RequestBody ProdutoRequest request) {
 
        produtoService.update(id, request.build());
        return ResponseEntity.ok().build();
    }
-
+   @ApiOperation(value = "Serviço responsável por deletar um produto referente ao Id passado na URL.")
    @DeleteMapping("/{id}")
    public ResponseEntity<Void> delete(@PathVariable Long id) {
 
