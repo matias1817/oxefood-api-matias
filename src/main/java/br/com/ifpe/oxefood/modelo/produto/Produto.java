@@ -5,10 +5,12 @@ package br.com.ifpe.oxefood.modelo.produto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
 
+import br.com.ifpe.oxefood.modelo.categoriaProduto.CategoriaProduto;
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +29,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Produto extends EntidadeAuditavel {
     
+    @ManyToOne
+   private CategoriaProduto categoria;
+
    @Column
    private String codigo;
    
