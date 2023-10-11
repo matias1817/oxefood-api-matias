@@ -31,6 +31,8 @@ public class Entregador extends EntidadeAuditavel{
     @Column
     private String cpf;
     @Column
+    private String email;
+    @Column
     private  String rg;
     @Column
     private LocalDate dataNascimento;

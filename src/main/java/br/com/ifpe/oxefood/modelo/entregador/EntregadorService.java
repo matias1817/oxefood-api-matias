@@ -8,12 +8,20 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ifpe.oxefood.modelo.mensagens.EmailService;
+
 
 
 @Service
 public class EntregadorService {
 
-   @Autowired
+
+
+    
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
    private EntregadorRepository repository;
 
    @Transactional
@@ -22,6 +30,9 @@ public class EntregadorService {
        entregador.setHabilitado(Boolean.TRUE);
        entregador.setVersao(1L);
        entregador.setDataCriacao(LocalDate.now());
+
+       emailService.enviarEmailConfirmacaoCadastroEntregador(entregador);
+
        return repository.save(entregador);
    }
 

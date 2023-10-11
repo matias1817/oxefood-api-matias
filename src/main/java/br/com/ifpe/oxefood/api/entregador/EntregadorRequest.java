@@ -2,6 +2,8 @@ package br.com.ifpe.oxefood.api.entregador;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -21,6 +23,10 @@ public class EntregadorRequest {
     private String nome;
     
     private String cpf;
+
+      @NotBlank(message = "O Email é de preenchimento obrigatório")
+   @Email
+   private String email;
     
     private  String rg;
     
@@ -65,6 +71,7 @@ public class EntregadorRequest {
                .enderecoCidade(enderecoCidade)
                .enderecoComplemento(enderecoComplemento)
                .enderecoNumero(enderecoNumero)
+               .email(email)
                .enderecoRua(enderecoRua)
                .enderecoUf(enderecoUf)
                .qtdEntregasRealizadas(qtdEntregasRealizadas)
