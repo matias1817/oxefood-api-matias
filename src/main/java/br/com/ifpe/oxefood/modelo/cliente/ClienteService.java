@@ -33,7 +33,7 @@ public class ClienteService {
        cliente.setHabilitado(Boolean.TRUE);
        cliente.setVersao(1L);
        cliente.setDataCriacao(LocalDate.now());
-       emailService.enviarEmailConfirmacaoCadastroCliente(cliente);
+       //emailService.enviarEmailConfirmacaoCadastroCliente(cliente);
        return repository.save(cliente);
    }
    
@@ -81,12 +81,13 @@ public Cliente findById(Long id) {
    public EnderecoCliente adicionarEnderecoCliente(Long clienteId, EnderecoCliente endereco) {
 
        Cliente cliente = this.findById(clienteId);
-      
+       
        //Primeiro salva o EnderecoCliente:
 
        endereco.setCliente(cliente);
        endereco.setHabilitado(Boolean.TRUE);
        enderecoClienteRepository.save(endereco);
+       
       
        //Depois acrescenta o endereço criado ao cliente e atualiza o cliente:
 
@@ -99,6 +100,8 @@ public Cliente findById(Long id) {
        listaEnderecoCliente.add(endereco);
        cliente.setEnderecos(listaEnderecoCliente);
        this.save(cliente);
+
+       System.out.println(cliente);
       
        return endereco;
    }

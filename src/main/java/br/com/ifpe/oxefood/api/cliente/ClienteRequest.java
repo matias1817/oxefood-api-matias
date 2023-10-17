@@ -23,9 +23,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ClienteRequest {
    
-   @NotNull(message = "O Nome é de preenchimento obrigatório")
-   @NotBlank(message = "O Nome é de preenchimento obrigatório")
-   @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")
+ //  @NotNull(message = "O Nome é de preenchimento obrigatório")
+  // @NotBlank(message = "O Nome é de preenchimento obrigatório")
+ //  @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")
    private String nome;
 
    @JsonFormat(pattern = "dd/MM/yyyy")

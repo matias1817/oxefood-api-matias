@@ -32,13 +32,11 @@ public class Cliente extends EntidadeAuditavel {
    private List<EnderecoCliente> enderecos;
 
 
-    @Column(nullable = false, length = 100)
+    @Column( length = 100)
    private String nome;
 
    @Column
     private String email;
-
-
 
    @Column
    private LocalDate dataNascimento;
