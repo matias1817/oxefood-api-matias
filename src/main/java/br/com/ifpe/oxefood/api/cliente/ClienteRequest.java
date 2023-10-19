@@ -11,7 +11,9 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import br.com.ifpe.oxefood.modelo.acesso.Usuario;
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,10 +33,12 @@ public class ClienteRequest {
    @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
 
-   @NotBlank(message = "O Email é de preenchimento obrigatório")
+   @NotBlank(message = "O e-mail é de preenchimento obrigatório")
    @Email
    private String email;
-    
+
+   @NotBlank(message = "A senha é de preenchimento obrigatório")
+   private String password;
 
 
    @NotNull(message = "O CPF é de preenchimento obrigatório")
@@ -50,6 +54,8 @@ public class ClienteRequest {
 
    public Cliente build() {
        return Cliente.builder()
+       .usuario(buildUsuario())
+
                .nome(nome)
                .dataNascimento(dataNascimento)
                .cpf(cpf)
@@ -59,4 +65,13 @@ public class ClienteRequest {
                .foneFixo(foneFixo)
                .build();
    }
+    public Usuario buildUsuario() {
+	
+	return Usuario.builder()
+		.username(email)
+		.password(password)
+		.roles(java.util.Arrays.asList(Usuario.ROLE_CLIENTE))
+		.build();
+    }
+
 }
